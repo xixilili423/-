@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>软件缺陷预测</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="软件缺陷预测" />
+    <link rel="stylesheet" type="text/css" href="Style/skin.css" />
+
+    <script language="javascript" src="Js/jquery-3.3.1.min.js"></script>
+    <script language="JavaScript">
+        //1.当文档加载完毕,调用jquery
+        $(function () {
+            //2.执行图片点击事件
+            $("#code").click(function () {
+                //3.设置图片的src属性,注意需要添加随机数
+                $(this).prop("src","code.let?id="+Math.random());
+                console.log('变量：');
+            });
+        });
+
+    </script>
+</head>
+<body>
+<table valign="top" width="100%">
+    <!-- 顶部部分 -->
+    <tr height="41"><td colspan="2" background="Images\top_top_bg.gif">&nbsp;</td></tr>
+    <!-- 主体部分 -->
+    <tr style="background:url() repeat-x;" height="532"    >
+        <!-- 主体左部分 -->
+        <td id="left_cont" valign="top"  width="100%" height="100%">
+            <table  >
+                <tr>
+                    <td width="20%" rowspan="2">
+                        <ul>
+                            <li><img src="Images\book.jpg" />&nbsp;<a href="javascript:void(0)"/></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <!-- 主体右部分 -->
+        <td id="right_cont">
+            <table height="100%">
+                <tr height="30%"><td colspan="3">&nbsp;</td></tr>
+                <tr>
+                    <td width="30%" rowspan="5">&nbsp;</td>
+                    <td valign="top" id="form">
+                        <form id="fmLogin" method="post" action="user.let?type=login">
+                            <table valign="top" width="50%">
+                                <tr><td colspan="2"><h4 style="letter-spacing:1px;font-size:16px;">软件缺陷预测</h4></td></tr>
+                                <tr><td>管理员：</td><td><input type="text" name="name" required /></td></tr>
+                                <tr><td>密&nbsp;&nbsp;&nbsp;&nbsp;码：</td><td><input type="password" name="pwd" required/></td></tr>
+                                <tr><td>验证码：</td><td><input type="text" name="valcode" value="" style="width:100px;" required/>&nbsp;
+                                    <img id="code" img src="code.let" style="height: 25px; width: 70px; position:absolute; +margin-top:1px"/>    </td></tr>
+                                <tr class="bt"><td>&nbsp;</td><td><input type="submit" value="登录" />&nbsp;<input type="reset" value="重填" /></td></tr>
+                            </table>
+                        </form>
+                    </td>
+                    <td rowspan="5">&nbsp;</td>
+                </tr>
+                <tr><td colspan="3">&nbsp;</td></tr>
+            </table>
+        </td>
+    </tr>
+    <!-- 底部部分 -->
+
+</table>
+</body>
+</html>

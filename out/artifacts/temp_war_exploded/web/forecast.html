@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>预测路线</title>
+    <style>
+        #container {
+            width: 810px;
+            height: 810px;
+        }
+
+        body {
+            background-size: 100%;
+            background: url(./Image/road.png);
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: flex;">
+        <div id="container">
+        </div>
+
+        <div style="margin-top: 100px; padding-left: 175px;">
+            <div style="margin-bottom: 150px;"><img src="./Image/路径预测.png"></div>
+            <div style="padding-left: 70px;">
+                <form action="showServlet.let?type=select" method="post">
+                    Node-First: <input type="text" name="node1" id="firstNode">
+                    <br>
+                    Node-Last: <input type="text" name="node2" id="lastNode">
+                    <br>
+                    时间：
+                    天：
+                    <select name="day" id="day">
+                        <option value="01">1</option>
+                                    <option value="02">2</option>
+                                    <option value="03">3</option>
+                                    <option value="04">4</option>
+                                    <option value="05">5</option>
+                                    <option value="06">6</option>
+                                    <option value="07">7</option>
+                                    <option value="08">8</option>
+                                    <option value="09">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+
+                    </select>
+                    时间段：
+                    <select name="sta" id="sta">
+                        分段：
+                        <option value="08.00-08.10">08:00-08:10</option>
+                        <option value="08.10-08.20">08:10-08:20</option>
+                        <option value="08.20-08.30">08:20-08:30</option>
+                        <option value="08.30-08.40">08:30-08:40</option>
+                        <option value="08.40-08.50">08:40-08:50</option>
+                        <option value="08.50-09.00">08:50-09:00</option>
+                        <option value="15.00-15.10">15.00-15.10</option>
+                        <option value="15.10-15.20">15.10-15.20</option>
+                        <option value="15.20-15.30">15.20-15.30</option>
+                        <option value="15.30-15.40">15.30-15.40</option>
+                        <option value="15.40-15.50">15.40-15.50</option>
+                        <option value="15.40-15.50">15.40-15.50</option>
+                        <option value="18.00-18.10">18.00-18.10</option>
+                        <option value="18.10-18.20">18.10-18.20</option>
+                        <option value="18.20-18.30">18.20-18.30</option>
+                        <option value="18.30-18.40">18:30-18:40</option>
+                        <option value="18.40-18.50">18:40-18:50</option>
+                        <option value="18.50-19.00">18:50-19:00</option>
+                    </select>
+                    <br>
+                    <input type="submit" value="预测路线">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://webapi.amap.com/loader.js"></script>
+    <script type="text/javascript">
+        AMapLoader.load({
+            "key": "94d1069d6b6c1f6d76b5126005fe1616",              // 申请好的Web端开发者Key，首次调用 load 时必填
+            "version": "2.0",   // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
+            "plugins": ['AMap.Scale', 'AMap.ToolBar'],           // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+            "AMapUI": {             // 是否加载 AMapUI，缺省不加载
+                "version": '1.1',   // AMapUI 版本
+                "plugins": ['overlay/SimpleMarker'],       // 需要加载的 AMapUI ui插件
+            },
+            "Loca": {                // 是否加载 Loca， 缺省不加载
+                "version": '2.0'  // Loca 版本
+            },
+        }).then((AMap) => {
+            var map = new AMap.Map('container', {
+                center: [109.828871, 40.637939],
+                pitch: 50,
+                viewMode: '3D',
+                zoom: 13,
+                terrain: true // 开启地形图
+            });
+            var first_icon = new AMap.Icon({
+                size: new AMap.Size(40, 50),    // 图标尺寸
+                image: './Image/first-node .png',  // Icon的图像
+                imageSize: new AMap.Size(40, 40)   // 根据所设置的大小拉伸或压缩图片
+            });
+            var last_icon = new AMap.Icon({
+                size: new AMap.Size(40, 50),    // 图标尺寸
+                image: './Image/last-node.png',  // Icon的图像
+                imageSize: new AMap.Size(40, 40)   // 根据所设置的大小拉伸或压缩图片
+            });
+            var firstNode;
+            var lastNode;
+
+            map.on('click', function (e) {
+                if (firstNode == undefined) {
+                    document.getElementById("firstNode").value = e.lnglat.getLng() + ',' + e.lnglat.getLat();
+                    var marker = new AMap.Marker({
+                        position: new AMap.LngLat(e.lnglat.getLng(), e.lnglat.getLat()),
+                        offset: new AMap.Pixel(-20, -40),
+                        icon: first_icon, // 添加 Icon 实例
+                        title: '节点一 侯卓甲大道'
+                    });
+                    firstNode = marker;
+                    map.add(firstNode);
+                } else {
+                    map.remove(firstNode);
+                    document.getElementById("firstNode").value = e.lnglat.getLng() + ',' + e.lnglat.getLat();
+                    var marker = new AMap.Marker({
+                        position: new AMap.LngLat(e.lnglat.getLng(), e.lnglat.getLat()),
+                        offset: new AMap.Pixel(-20, -40),
+                        icon: first_icon, // 添加 Icon 实例
+                        title: '节点一 侯卓甲大道'
+                    });
+                    firstNode = marker;
+                    map.add(firstNode);
+                }
+
+            });
+            map.on('rightclick', function (e) {
+                if (lastNode == undefined) {
+                    document.getElementById("lastNode").value = e.lnglat.getLng() + ',' + e.lnglat.getLat();
+                    var marker = new AMap.Marker({
+                        position: new AMap.LngLat(e.lnglat.getLng(), e.lnglat.getLat()),
+                        offset: new AMap.Pixel(-20, -40),
+                        icon: last_icon, // 添加 Icon 实例
+                        title: '重点 侯卓甲大道'
+                    });
+                    lastNode = marker;
+                    map.add(firstNode);
+                } else {
+                    map.remove(lastNode);
+                    document.getElementById("lastNode").value = e.lnglat.getLng() + ',' + e.lnglat.getLat();
+                    var marker = new AMap.Marker({
+                        position: new AMap.LngLat(e.lnglat.getLng(), e.lnglat.getLat()),
+                        offset: new AMap.Pixel(-20, -40),
+                        icon: last_icon, // 添加 Icon 实例
+                        title: '终点 侯卓甲大道'
+                    });
+                    lastNode = marker;
+                    map.add(lastNode);
+                }
+
+            });
+
+        }).catch((e) => {
+            console.error(e);  //加载错误提示
+        });
+        AMapLoader.load({ //可多次调用load
+            plugins: ['AMap.MapType']
+        }).then((AMap) => {
+            map.addControl(new AMap.MapType())
+        }).catch((e) => {
+            console.error(e);
+        });
+
+    </script>
+</body>
+
+</html>
