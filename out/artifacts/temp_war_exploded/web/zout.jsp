@@ -17,7 +17,7 @@
 
 <body style="margin: 5% 26% 0% 29%;">
 <div style="text-align: center;">
-    <h2>街道数据预测</h2>
+    <h2>算法性能数据展示</h2>
 </div>
 <!-- 2.为ECharts准备一个具备大小（宽高）的Dom -->
 <div id="main" style="width: 600px; height: 400px;"></div>

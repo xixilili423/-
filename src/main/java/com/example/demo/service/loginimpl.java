@@ -13,6 +13,7 @@ import java.util.List;
 public class loginimpl implements login {
     @Autowired
     Usermapper usermapper ;
+
     List<String> li = new ArrayList<>();
 
     @Autowired
@@ -22,16 +23,16 @@ public class loginimpl implements login {
         List<String> li = new ArrayList<>();
     }
 
-    public boolean log(String id, String password) {
+    public user log(String id, String password) {
 
         QueryWrapper<user> query = new QueryWrapper<>();
         query.eq("id", id).eq("password", password);
         user li = usermapper.selectOne(query);
         if (li.getPassword()== null) {
 
-            return false;
+            return li;
         } else {
-            return true;
+            return li;
         }
     }
 

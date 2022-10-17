@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html >
 <head>
-  <title>网站后台管理中心</title>
+  <title>用户中心</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="description" content="网站后台管理系统" />
   <meta name="keywords" content="网站管理系统" />

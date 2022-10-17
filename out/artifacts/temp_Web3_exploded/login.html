@@ -4,9 +4,9 @@
     <title>软件缺陷预测</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="软件缺陷预测" />
-    <link rel="stylesheet" type="text/css" href="D:\SOURSE\temp\web\Style\skin.css" />
+    <link rel="stylesheet" type="text/css" href="Style/skin.css" />
 
-    <script language="javascript" src="D:\SOURSE\temp\web\Style\skin.css"></script>
+    <script language="javascript" src="Js/jquery-3.3.1.min.js"></script>
     <script language="JavaScript">
         //1.当文档加载完毕,调用jquery
         $(function () {
@@ -14,6 +14,7 @@
             $("#code").click(function () {
                 //3.设置图片的src属性,注意需要添加随机数
                 $(this).prop("src","code.let?id="+Math.random());
+                console.log('变量：');
             });
         });
 
@@ -22,7 +23,7 @@
 <body>
 <table valign="top" width="100%">
     <!-- 顶部部分 -->
-    <tr height="41"><td colspan="2" background="D:\SOURSE\temp\web\Images\top_top_bg.gif">&nbsp;</td></tr>
+    <tr height="41"><td colspan="2" background="Images\top_top_bg.gif">&nbsp;</td></tr>
     <!-- 主体部分 -->
     <tr style="background:url() repeat-x;" height="532"    >
         <!-- 主体左部分 -->
@@ -31,7 +32,7 @@
                 <tr>
                     <td width="20%" rowspan="2">
                         <ul>
-                            <li><img src="D:\SOURSE\temp\web\Images\book.jpg" />&nbsp;<a href="javascript:void(0)"/></li>
+                            <li><img src="Images\book.jpg" />&nbsp;<a href="javascript:void(0)"/></li>
                         </ul>
                     </td>
                 </tr>

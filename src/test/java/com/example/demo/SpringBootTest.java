@@ -18,7 +18,7 @@ public class SpringBootTest {
     public void test()
     {
         //调用UserBiz的getUser方法，根据用户名和密码获取对应的用户对象
-        boolean user = userBiz.log("2" ,"123456");
+        user u = userBiz.log("2" ,"123456");
 
 
     }
