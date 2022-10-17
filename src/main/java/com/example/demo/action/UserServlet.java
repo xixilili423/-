@@ -39,10 +39,8 @@ public class UserServlet extends HttpServlet {
         HttpSession session = req.getSession();
         req.setCharacterEncoding("utf-8");//设置编码格式防止乱码
         resp.setContentType("text/html;charset=utf-8");
-
         PrintWriter out = resp.getWriter();
-        //loginimpl userBiz=new loginimpl();
-       // user US=new user();
+
         //判读用户请求的类型为login
         String method = req.getParameter("type");
         switch (method) {
