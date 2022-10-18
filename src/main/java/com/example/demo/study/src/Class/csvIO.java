@@ -56,7 +56,7 @@ public class csvIO {
         for (int i = 0; i < file.length; i++) {
             str[i] = String.valueOf(file[i]);
         }
-        System.out.println(Arrays.toString(str));
+//        System.out.println(Arrays.toString(str));
         csvWriter.write(str);
         csvWriter.close();
 

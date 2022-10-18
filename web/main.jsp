@@ -59,10 +59,6 @@
                     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                         <!-- 空白行-->
                         <tr><td colspan="2" valign="top">&nbsp;</td><td>&nbsp;</td><td valign="top">&nbsp;</td></tr>
-                        <!--**********这里是内容**********-->
-                        <!--**********这里是内容**********-->
-                        <!--**********这里是内容**********-->
-                        <!--**********这里是内容**********-->
                         <tr>
                             <!--左边内容-->
                             <td colspan="2" valign="top">
@@ -102,14 +98,6 @@
                                     </td></tr>
                                 </table>
                             </td>
-                        </tr>
-                        <tr>
-                            <td width="2%">&nbsp;</td>
-                            <td width="51%" class="left_txt">
-                                <img src="Images/icon_mail.gif" width="16" height="11"> 客户服务邮箱：2087924818@qq.com<br />
-                               
-                            </td>
-                            <td>&nbsp;</td><td>&nbsp;</td>
                         </tr>
                     </table>
                 </td>

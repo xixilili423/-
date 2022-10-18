@@ -21,7 +21,7 @@ public class LRModel {
         csvIO csvio = new csvIO();
         Exchange change = new Exchange();
         csvList_test = csvio.readCsv(URL); //读取测试集
-        Weight = csvio.readW("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\LR_W.csv");  //读取训练模型
+        Weight = csvio.readW("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\LR_W.csv");  //读取训练模型
         double[] W = change.W_exchange(Weight);  //转换格式
         double[][] dataList_test = change.exchange(csvList_test,type_test);
         double[] test_type_double = change.type_change(type_test);
@@ -33,7 +33,7 @@ public class LRModel {
         int test_sample_num = dataList_test.length;  //测试集样本个数
         int test_para_num = dataList_test[0].length;  //测试集特征个数
         double[] pre = LogisticTest.test(test_para_num,test_sample_num,dataList_test,W);
-        System.out.println(Arrays.toString(pre));
+//        System.out.println(Arrays.toString(pre));
 
         //计算准确率
         int countNum=0;
@@ -44,7 +44,7 @@ public class LRModel {
         }
         DecimalFormat dF = new DecimalFormat("0.0000");  //精确度
         accuracy =(float)countNum/test_type_double.length;
-        System.out.println("正确率为："+dF.format((float)countNum/test_type_double.length));
+//        System.out.println("正确率为："+dF.format((float)countNum/test_type_double.length));
 
 
         /*
@@ -52,7 +52,7 @@ public class LRModel {
          */
         type_result = change.type_change_back(pre);
         //写入csv
-        csvio.writeCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\LRresult.csv",type_result);
+        csvio.writeCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\LRresult.csv",type_result);
 
         //计算得分
         Judge judge = new Judge();

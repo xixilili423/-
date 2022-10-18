@@ -33,7 +33,7 @@
         <tr>
             <td width="182" valign="top">
                 <div id="container">
-                    <h1 class="type"><a href="javascript:void(0)">会员管理</a></h1>
+                    <h1 class="type"><a href="javascript:void(0)">文件选择</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
@@ -41,49 +41,9 @@
                             </tr>
                         </table>
                         <ul class="RM">
-                            <li><a href="./member.let?type=addpre" target="main">会员开卡</a></li>
-                            <li><a href="./member.let?type=query" target="main">会员管理</a></li>
-                            <li><a href="./mem_recharge.jsp" target="main">会员充值</a></li>
+                            <li><a href="file.jsp" target="main">上传文件</a></li>
                         </ul>
                     </div>
-                    <h1 class="type"><a href="javascript:void(0)">图书管理</a></h1>
-                    <div class="content">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td><img src="Images/menu_top_line.gif" width="182" height="5" /></td>
-                            </tr>
-                        </table>
-                        <ul class="RM">
-                            <li><a href="book_add.jsp" target="main">添加图书</a></li>
-                            <li><a href="./book.let?type=query&pageIndex=1" target="main">图书列表</a></li>
-                        </ul>
-                    </div>
-                    <h1 class="type"><a href="javascript:void(0)">图书类型管理</a></h1>
-                    <div class="content">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td><img src="Images/menu_top_line.gif" width="182" height="5" /></td>
-                            </tr>
-                        </table>
-                        <ul class="RM">
-                            <li><a href="type_add.jsp" target="main">添加类型</a></li>
-                            <li><a href="type_list.jsp" target="main">类型列表</a></li>
-                        </ul>
-                    </div>
-                    <h1 class="type"><a href="javascript:void(0)">常用操作</a></h1>
-                    <div class="content">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td><img src="Images/menu_top_line.gif" width="182" height="5" /></td>
-                            </tr>
-                        </table>
-                        <ul class="RM">
-                            <li><a href="" target="main">图书借阅</a></li>
-                            <li><a href="" target="main">图书归还</a></li>
-                            <li><a href="" target="main">查看借阅历史信息</a></li>
-                        </ul>
-                    </div>
-                    <!-- *********** -->
                     <h1 class="type"><a href="javascript:void(0)">个人中心</a></h1>
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -97,23 +57,6 @@
                         </ul>
                     </div>
 
-                    <!-- *********** -->
-
-                    <div class="content">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td><img src="Images/menu_top_line.gif" width="182" height="5" /></td>
-                            </tr>
-                        </table>
-                        <ul class="RM">
-                            <li><a href="javascript:void(0)" target="main">友情连接</a></li>
-                            <li><a href="javascript:void(0)" target="main">在线留言</a></li>
-                            <li><a href="javascript:void(0)" target="main">网站投票</a></li>
-                            <li><a href="javascript:void(0)" target="main">邮箱设置</a></li>
-                            <li><a href="javascript:void(0)" target="main">图片上传</a></li>
-                        </ul>
-                    </div>
-                    <!-- *********** -->
                 </div>
             </td>
         </tr>

@@ -26,6 +26,6 @@ public class Judge {
             }
         }
         DecimalFormat dF = new DecimalFormat("0.0000");  //精确度
-        System.out.println("得分为:"+dF.format((float)scoreNum/scoreTotal));
+//        System.out.println("得分为:"+dF.format((float)scoreNum/scoreTotal));
     }
 }

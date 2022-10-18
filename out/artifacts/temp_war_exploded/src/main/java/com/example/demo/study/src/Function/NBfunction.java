@@ -20,8 +20,8 @@ public class NBfunction {
         ArrayList<String> type_result = new ArrayList<String>();
 
         csvIO csvio = new csvIO();
-        csvList_train = csvio.readCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\PDE.csv");
-        csvList_test = csvio.readCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\Lucene.csv");
+        csvList_train = csvio.readCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\PDE.csv");
+        csvList_test = csvio.readCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\Lucene.csv");
 
         Exchange change = new Exchange();
         double[][] dataList_train = change.exchange(csvList_train,type_train);

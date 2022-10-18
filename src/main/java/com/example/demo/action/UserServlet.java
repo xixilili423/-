@@ -2,6 +2,7 @@ package com.example.demo.action;
 import com.example.demo.pojo.user;
 import com.example.demo.service.*;
 import com.example.demo.study.src.Function.Out;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -11,15 +12,16 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @WebServlet("/user.let")//配置虚拟地址
 public class UserServlet extends HttpServlet {
     private static  loginimpl  userBiz =( loginimpl) ApplicationContextHelperUtil.getBean( loginimpl.class);
-   // @Autowired
+    // @Autowired
     //private loginimpl userBiz;
-   private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     // 上传文件存储目录
     private static final String UPLOAD_DIRECTORY = "upload";
@@ -28,6 +30,8 @@ public class UserServlet extends HttpServlet {
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_req_SIZE   = 1024 * 1024 * 50; // 50MB
+    Out out1;
+    List<Out> list = new ArrayList<Out>();
 
     @Autowired
     private  user US;
@@ -45,8 +49,8 @@ public class UserServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       // loginimpl userBiz= BeanUtils.getBean(loginimpl.class);;
-       // user US =BeanUtils.getBean(user.class);
+        // loginimpl userBiz= BeanUtils.getBean(loginimpl.class);;
+        // user US =BeanUtils.getBean(user.class);
         HttpSession session = req.getSession();
         req.setCharacterEncoding("utf-8");//设置编码格式防止乱码
         resp.setContentType("text/html;charset=utf-8");
@@ -57,7 +61,21 @@ public class UserServlet extends HttpServlet {
 
 
         switch (method) {
+            case "data":
+                ObjectMapper mapper = new ObjectMapper(); // 提供java-json相互转换功能的类
+                String json = mapper.writeValueAsString(out1); // 将list中的对象转换为Json字符串
+                System.out.println(out1.toString());
+                System.out.println("发送数据");
+                // 将json字符串数据返回给前端
+                resp.setContentType("text/html; charset=utf-8");
+                resp.getWriter().write(json);
+                break;
             case "file":
+                // 加载页面
+//                req.getServletContext().getRequestDispatcher("loading.html").forward(
+//                        req, resp);
+//                out.println("<script>location.href = 'loading.html';</script>");
+
                 // 检测是否为多媒体上传
                 if (!ServletFileUpload.isMultipartContent(req)) {
                     // 如果不是则停止
@@ -94,6 +112,7 @@ public class UserServlet extends HttpServlet {
                 if (!uploadDir.exists()) {
                     uploadDir.mkdir();
                 }
+                String filePath = null;
 
                 try {
                     // 解析请求的内容提取文件数据
@@ -106,12 +125,10 @@ public class UserServlet extends HttpServlet {
                             // 处理不在表单中的字段
                             if (!item.isFormField()) {
                                 String fileName = new File(item.getName()).getName();
-                                String filePath = uploadPath + File.separator + fileName;
+                                filePath = uploadPath + File.separator + fileName;
                                 File storeFile = new File(filePath);
                                 // 在控制台输出文件的上传路径
                                 System.out.println(filePath);
-                                 Out out1 = new Out(filePath);
-
                                 // 保存文件到硬盘
                                 item.write(storeFile);
                                 req.setAttribute("message",
@@ -123,9 +140,11 @@ public class UserServlet extends HttpServlet {
                     req.setAttribute("message",
                             "错误信息: " + ex.getMessage());
                 }
+                out1 = new Out(filePath);
+                System.out.println(out1.toString());
                 // 跳转到 message.jsp
-                req.getServletContext().getRequestDispatcher("/message.jsp").forward(
-                        req, resp);
+                out.println("<script>location.href = 'bar.html';</script>");
+                System.out.println("预测完成");
                 break;
             case "login":
 //                out.println("<script>alert('登录成功');location.href='index.jsp';</script>");
@@ -136,29 +155,29 @@ public class UserServlet extends HttpServlet {
                 String pwd = req.getParameter("pwd");
                 String userCode = req.getParameter("valcode");
 
-            //提取session中的验证码,进行判断,dopost中存在code中
-              String code = session.getAttribute("code").toString();
+                //提取session中的验证码,进行判断,dopost中存在code中
+                String code = session.getAttribute("code").toString();
 
-               //不区分大小写
-              if (!code.equalsIgnoreCase(userCode)) {
-                  out.println("<script>alert('验证码输入错误');location.href = 'login.html';</script>");
-                 return;
-              }
+                //不区分大小写
+                if (!code.equalsIgnoreCase(userCode)) {
+                    out.println("<script>alert('验证码输入错误');location.href = 'login.html';</script>");
+                    return;
+                }
 
                 //调用UserBiz的getUser方法，根据用户名和密码获取对应的用户对象
-              user u= userBiz.log(name, pwd);
+                user u= userBiz.log(name, pwd);
 
-               // 4.判断用户对象是否为null: 
-              if (u.getPassword() == null) {
-                   // 如果是null表示用户名或密码不正确 ，提示错误，回到登录页面. 
-                  out.println("<script>alert('用户名或密码不存在');location.href = 'login.html';</script>");
-              } else {
-                   //  非空：表示登录成功, 将用户对象保存到session中,提示登录成功后,将页面跳转到主界
+                // 4.判断用户对象是否为null: 
+                if (u.getPassword() == null) {
+                    // 如果是null表示用户名或密码不正确 ，提示错误，回到登录页面. 
+                    out.println("<script>alert('用户名或密码不存在');location.href = 'login.html';</script>");
+                } else {
+                    //  非空：表示登录成功, 将用户对象保存到session中,提示登录成功后,将页面跳转到主界
 
-                  u.setId(name);
-                  session.setAttribute("user", u);//user-->Object
-                  out.println("<script>alert('登录成功');location.href='index.jsp';</script>");
-              }
+                    u.setId(name);
+                    session.setAttribute("user", u);//user-->Object
+                    out.println("<script>alert('登录成功');location.href='index.jsp';</script>");
+                }
                 break;
             case "exit":
                 //验证用户是否登录

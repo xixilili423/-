@@ -26,9 +26,9 @@ public class KNNfunction {
         ArrayList<String> type_result = new ArrayList<String>();
 
         csvIO csvio = new csvIO();
-        csvList_train1 = csvio.readCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\PDE.csv");
-        csvList_train2 = csvio.readCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\JDT.csv");
-        csvList_train3 = csvio.readCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\Lucene.csv");
+        csvList_train1 = csvio.readCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\PDE.csv");
+        csvList_train2 = csvio.readCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\JDT.csv");
+        csvList_train3 = csvio.readCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\Lucene.csv");
         for (int i = 0; i < csvList_train1.size(); i++) {
             csvList_train.add(csvList_train1.get(i));
         }
@@ -59,7 +59,7 @@ public class KNNfunction {
         type_result = knn.calcul(dataList_train,dataList_test,type_train,K);
 
         //写入csv
-        csvio.writeCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\KNNresult.csv",type_result);
+        csvio.writeCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\KNNresult.csv",type_result);
 
         //计算正确率
         int countNum=0;
@@ -71,7 +71,7 @@ public class KNNfunction {
         DecimalFormat dF = new DecimalFormat("0.0000");  //精确度
         accuracy = (float)countNum/type_test.size();
         //System.out.println(accuracy);
-        System.out.println("正确率为："+dF.format((float)countNum/type_test.size()));
+//        System.out.println("正确率为："+dF.format((float)countNum/type_test.size()));
 
         //计算得分
         Judge judge = new Judge();

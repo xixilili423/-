@@ -7,7 +7,7 @@
 
 <body>
 <form action="user.let?type=file" method="post"  enctype="multipart/form-data">
-    <input type="file" name="myfile">
-    <input type="submit" value="上传文件">
+    <input type="file" name="myfile" accept=".csv">
+    <input type="submit" value="上传文件" >
 </form></body>
 </html>

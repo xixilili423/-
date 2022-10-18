@@ -24,9 +24,9 @@ public class LogisticFunction {
         ArrayList<String> type_result = new ArrayList<String>();
 
         csvIO csvio = new csvIO();
-        csvList_train1 = csvio.readCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\PDE.csv");
-        csvList_train2 = csvio.readCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\JDT.csv");
-        csvList_train3 = csvio.readCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata\\Lucene.csv");
+        csvList_train1 = csvio.readCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\PDE.csv");
+        csvList_train2 = csvio.readCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\JDT.csv");
+        csvList_train3 = csvio.readCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv\\Lucene.csv");
         for (int i = 0; i < csvList_train1.size(); i++) {
             csvList_train.add(csvList_train1.get(i));
         }
@@ -75,7 +75,7 @@ public class LogisticFunction {
 
         //预测
         double[] pre = LogisticTest.test(test_para_num,test_sample_num,dataList_test,W);
-        System.out.println(Arrays.toString(pre));
+//        System.out.println(Arrays.toString(pre));
 
         //计算准确率
         int countNum=0;
@@ -87,7 +87,7 @@ public class LogisticFunction {
         DecimalFormat dF = new DecimalFormat("0.0000");  //精确度
 
         accuracy = (float)countNum/test_type_double.length;
-        System.out.println("正确率为："+dF.format((float)countNum/test_type_double.length));
+//        System.out.println("正确率为："+dF.format((float)countNum/test_type_double.length));
 
 
 
@@ -96,7 +96,7 @@ public class LogisticFunction {
          */
         type_result = change.type_change_back(pre);
         //写入csv
-        csvio.writeCsv("C:\\Users\\lenovo\\Desktop\\aaa\\algorithm\\csvdata1\\LRresult.csv",type_result);
+        csvio.writeCsv("D:\\SOURSE\\软件缺陷项目资料\\AEEEM\\csv1\\LRresult.csv",type_result);
 
         //计算得分
         Judge judge = new Judge();

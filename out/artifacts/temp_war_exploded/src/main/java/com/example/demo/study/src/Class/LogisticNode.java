@@ -79,7 +79,7 @@ public class LogisticNode {
                 double abs = Math.abs(S[0] - S[1]);
           //      System.out.println(abs);
                 if (abs <0.000001){
-                    System.out.println("收敛！");
+//                    System.out.println("收敛！");
                     break;
                 }
                 S[0] = sum_err;
