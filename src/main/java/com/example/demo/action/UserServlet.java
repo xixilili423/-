@@ -1,6 +1,7 @@
 package com.example.demo.action;
 import com.example.demo.pojo.user;
 import com.example.demo.service.*;
+import com.example.demo.study.src.Function.Out;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -109,10 +110,12 @@ public class UserServlet extends HttpServlet {
                                 File storeFile = new File(filePath);
                                 // 在控制台输出文件的上传路径
                                 System.out.println(filePath);
+                                 Out out1 = new Out(filePath);
+
                                 // 保存文件到硬盘
                                 item.write(storeFile);
                                 req.setAttribute("message",
-                                        "文件上传成功!");
+                                        "文件上传成功!"+out1.toString());
                             }
                         }
                     }

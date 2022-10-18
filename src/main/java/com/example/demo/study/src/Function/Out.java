@@ -14,7 +14,7 @@ public class Out {
     private Date date1;
     private Date date2;
     private Date date3;
-    private  String URL;
+    public   String URL;
 
     public Out(String URL){
         KNNfunction KNN = new KNNfunction();
